@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!--Order is important-->
+        <ResourceDictionary Source="Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type Page}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Margin" Value="50"/>
+        <Setter Property="Background" Value="Red"/>
+    </Style>
+
+
+    <Style x:Key="PageBackground" TargetType="Page" BasedOn="{StaticResource {x:Type Page}}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Red" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--<Style TargetType="local:QuickOfferPage" BasedOn="{StaticResource PageBackground}" />
+    <Style TargetType="local:CurrentCardPage" BasedOn="{StaticResource PageBackground}" />
+    <Style TargetType="local:Fihrist" BasedOn="{StaticResource PageBackground}" />-->
+</ResourceDictionary>

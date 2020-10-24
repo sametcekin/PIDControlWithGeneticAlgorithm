@@ -1,0 +1,200 @@
+﻿<Window x:Class="PIDControlWithGeneticAlgorithm.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PIDControlWithGeneticAlgorithm.UI"
+        mc:Ignorable="d"
+        Title="PID Kontrol Hesaplayıcı"
+        WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="1.Kontrol Sistemi">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Kontrol sistemini seçiniz:"/>
+                        <ComboBox x:Name="comboBoxKontrolSistemi"
+                                  SelectedIndex="0"
+                                  SelectionChanged="comboBoxKontrolSistemi_SelectedIndexChanged">
+                            <ComboBoxItem Content="Motor Hız Kontrolü"/>
+                            <ComboBoxItem Content="Lamba Parlaklık Kontrolü"/>
+                        </ComboBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="2.Kontrol Sistemi Parametreleri" Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Adım sayısını giriniz:"/>
+                            <TextBox x:Name="textBoxAdimSayisi"
+                                     Text="50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Label Content="Adım aralığını giriniz:"/>
+                            <TextBox x:Name="textBoxAdimAraligi" 
+                                     Text="0,1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Label Content="Set değeri giriniz:"/>
+                            <TextBox x:Name="textBoxReferans"
+                                     Text="20"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="3.Genetik Algoritma Parametreleri" Grid.Row="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Jenerasyon Sayısı:"/>
+                            <TextBox x:Name="textBoxJenerasyonSayisi"
+                                     Text="100"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Label Content="Popülasyon Sayısı:"/>
+                            <TextBox x:Name="textBoxPopulasyonSayisi"
+                                     Text="100"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Label Content="Çarprazlama Oranı:"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="textBoxCarprazlamaOrani"
+                                         Text="10"/>
+                                <ComboBox Grid.Column="1" SelectedIndex="0" x:Name="comboBoxCSecim">
+                                    <ComboBoxItem Content="Tek Nokta"/>
+                                    <ComboBoxItem Content="Çoklu Nokta"/>
+                                </ComboBox>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <Label Content="Mutasyon Oranı:"/>
+                            <TextBox x:Name="textBoxMutasyonOrani"
+                                     Text="10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="4">
+                            <Label Content="Best Fitness:"/>
+                            <TextBox x:Name="textBoxBestFitnessDegeri" 
+                                     IsReadOnly="True"/>
+                        </StackPanel>
+                        <Button Content="PID Değerlerini Hesapla" 
+                                Click="buttonPIDBul_Click"
+                                Background="LawnGreen" 
+                                Grid.Row="5"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="4.Kontrol Sistemi Çıkış Değerleri Hesaplama" Grid.Row="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Kp:" />
+                            <TextBox x:Name="textBoxKp"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Label Content="Ki:"/>
+                            <TextBox x:Name="textBoxKi"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Label Content="Kd:"/>
+                            <TextBox x:Name="textBoxKd" />
+                        </StackPanel>
+                        <Button Background="LawnGreen" 
+                                Click="buttonHesapla_Click" 
+                                Content="Sistem Çıkışını Hesapla" Grid.Row="3"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Sonuçlar" Grid.Row="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Hata:" />
+                            <TextBox x:Name="labelHataDeger"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Label Content="Sistemin oturduğu zaman:"/>
+                            <TextBox x:Name="labelSaniye"/>
+                        </StackPanel>
+                        <GroupBox Header="Sistem Çıkış Değerleri" Grid.Row="2">
+                            <ListBox x:Name="listBoxReferansCikisDegerleri" Height="200"/>
+                        </GroupBox>
+                        <GroupBox Header="Hata Değerleri" Grid.Row="3">
+                            <ListBox x:Name="listBoxHataDegerleri" Height="200"/>
+                        </GroupBox>
+
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="PID Kontrol">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Resources/pid.jpg"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Zaman"/>
+                        <TextBox x:Name="textBoxt"/>
+                        <TextBlock Text="Sistem Girişi"/>
+                        <TextBox x:Name="textBoxSistemGirisi"/>
+                        <TextBlock Text="Hata"/>
+                        <TextBox x:Name="textBoxHata"/>
+                        <TextBlock Text="İntegral"/>
+                        <TextBox x:Name="textBoxIntegral"/>
+                        <TextBlock Text="Türev"/>
+                        <TextBox x:Name="textBoxTurev"/>
+                        <TextBlock Text="Sistem Çıkışı"/>
+                        <TextBox x:Name="textBoxSistemCikisi"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="PID Kontrol Sistem Çıkışı Grafiği" Grid.Row="1">
+                <Grid>
+                    <WpfPlot Name="wpfPlot1"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</Window>

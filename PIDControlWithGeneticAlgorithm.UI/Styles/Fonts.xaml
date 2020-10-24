@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+  <!--<FontFamily x:Key="Light">pack://application;,,,/Fonts/#Open Sans Light</FontFamily>
+    <FontFamily x:Key="Regular">pack://application;,,,/Fonts/#Open Sans Regular</FontFamily>
+    <FontFamily x:Key="Bold">pack://application;,,,/Fonts/#Open Sans Bold</FontFamily>
+    <FontFamily x:Key="Marlett">pack://application;,,,/Fonts/#Marlett</FontFamily>-->
+    <FontFamily x:Key="Light">Segoe UI Thin</FontFamily>
+    <FontFamily x:Key="Regular">Segoe UI Regular</FontFamily>
+    <FontFamily x:Key="Bold">Segoe UI Bold</FontFamily>
+    <FontFamily x:Key="Marlett">pack://application;,,,/Resources/Fonts/Marlett/#Marlett</FontFamily>
+
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource Light}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource Light}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BaseStyle}" />
+
+    <system:Double x:Key="FontSizeSmaller">10</system:Double>
+    <system:Double x:Key="FontSizeSmall">12</system:Double>
+    <system:Double x:Key="FontSizeRegular">14</system:Double>
+    <system:Double x:Key="FontSizeLarge">20</system:Double>
+    <system:Double x:Key="FontSizeXLarge">24</system:Double>
+    <system:Double x:Key="FontSizeXXLarge">30</system:Double>
+
+    <system:String x:Key="MarlettMinimize">&#x030;</system:String>
+    <system:String x:Key="MarlettMaximize">&#x031;</system:String>
+    <system:String x:Key="MarlettRestoreDown">&#x032;</system:String>
+    <system:String x:Key="MarlettClose">&#x072;</system:String>
+  
+</ResourceDictionary>
