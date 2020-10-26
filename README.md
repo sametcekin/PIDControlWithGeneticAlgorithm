@@ -1,6 +1,6 @@
 # PIDControlWithGeneticAlgorithm
 
-Gerçek Zamanlı Kontrol dersinde Motor Dinamiği ve Lamba Parlaklığıyla ilgili PID değerlerinin Genetik Algoritma hesaplanması üzerine geliştirmiş olduğum projedir. Hesaplanan PID değerleriyle;
+Gerçek Zamanlı Kontrolle Motor Dinamiği ve Lamba Parlaklığıyla ilgili PID değerlerinin Genetik Algoritma hesaplanması üzerine geliştirmiş olduğum projedir. Hesaplanan PID değerleriyle;
 Sistem çıkışını ve adımlarını,
 Sistemin ne zaman oturduğunu grafikte görebilirsiniz.
 İsterseniz PID değerlerini değiştirip optimum değerleri bulabilirsiniz.
